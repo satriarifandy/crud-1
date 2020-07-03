@@ -22,9 +22,9 @@ class JawabanController extends Controller
         // dd($data);
         $jawaban = JawabanModel::save($data);
         // dd($jawaban);
-
+        $he = $data['pertanyaan_id'];
         if($jawaban){
-            return redirect('/pertanyaan');
+            return redirect("/pertanyaan/$he");
         }
     }
 }

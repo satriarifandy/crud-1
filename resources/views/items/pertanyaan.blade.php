@@ -19,7 +19,15 @@
         <th scope="row" style="width: 5%">{{$loop->iteration}}</th>
         <td style="width: 20%">{{ $tanya-> judul }}</td>
         <td>{{ $tanya-> isi }}</td>
-        <td style="width: 10%"><a class="btn btn-info" href="/pertanyaan/{{$loop->iteration}}" role="button">Detail</a></td>
+        <td style="width: 20%">
+          <a class="btn btn-info" href="/pertanyaan/{{$tanya->id}}" role="button">Detail</a>
+          <a class="btn btn-warning" href="/pertanyaan/{{$tanya->id}}/edit" role="button">Edit</a>
+          <form action="/pertanyaan/{{$tanya->id}}" style="display: inline" method="post">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger" role="button"><i class="fas fa-trash-alt"></i></button>
+          </form>
+        </td>
       </tr>
       @endforeach
     </tbody>

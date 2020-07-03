@@ -20,6 +20,22 @@ class PertanyaanModel {
         return $satu_pertanyaan;
     }
 
+    public static function update($id, $request){
+        $pertanyaan = DB::table('pertanyaans')
+        ->where('id', $id)
+        ->update([
+            'judul' => $request['judul'],
+            'isi' => $request['isi']
+        ]);
+
+        return $pertanyaan;
+    }
+
+    public static function destroy($id){
+        $pertanyaan = DB::table('pertanyaans')
+        ->where('id', $id)->delete();
+    }
+
 }
 
 
