@@ -2,36 +2,45 @@
 
 @section('konten')
 <div class="container">
-    <div class="row">
-        <div class="col-4">
-            <h4 class="mt-4">Judul:</h4>
-            <h3 class=" mb-3">{{$pertanyaan[0]->judul}}</h3>
-            <h4>Pertanyaan dengan ID {{$pertanyaan[0]->id}}:</h4>
-            <p>{{$pertanyaan[0]->isi}}</p>
-            <h4 class="mt-4 mb-3">Jawaban:</h4>
-            
-            @if (count($jawabans) !== 0)
-                @foreach ($jawabans as $jawab)
-                    <p>{{$loop->iteration}}. {{$jawab->isi}}</p>
-                @endforeach
-            @else
-                <p>Belum ada Jawaban</p>
-            @endif
-        </div>
-        <div class="col-7" >
-            <h4 class="mt-4" style="float:right;">Tanggal dibuat: {{$pertanyaan[0]->created_at}}</h4>
-            <h4 style="float:right;">Tanggal diubah: {{$pertanyaan[0]->updated_at}}</h4>
-        </div>
+    <div class="card mt-4">
+            <div class="card-header">
+                Title:&nbsp&nbsp&nbsp&nbsp{{$pertanyaan[0]->isi}}
+            </div>
+            <div class="card-body" style="padding-right: 0px;">
+                <div class="row">
+                    <div class="col-9">
+                        <h5 class="card-title mb-4">Posted by:  </h5>
+                        <p class="card-text">Content: <br>{{$pertanyaan[0]->isi}}</p>
+                    </div>
+                    <div class="col-3">
+                        <p>Created at: {{$pertanyaan[0]->created_at}}</p>
+                        <p>Updated at: {{$pertanyaan[0]->updated_at}}</p>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <h4 class="ml-4">Answers:</h4>
+    
+    <div class="col">
+    @foreach ($jawabans as $jawab)
+    <div class="row ml-4" style="">
+        <div class="card" >
+            <div class="card-body">
+                <p class="card-text">{{$loop->iteration}}.  {{$jawab->isi}}</p>
+            </div>
+        </div>      
+    </div>
+    @endforeach
     </div>
     
-    
+
     <form action="/pertanyaan/{pertanyaan_id}" method="post">
     @csrf
     <div class="form-group">
-    <input class="form-control mb-2" id="pertanyaan_id" name="pertanyaan_id" placeholder="Masukkan ID pertanyaan">
-    <input class="form-control" id="isi" name="isi" placeholder="Enter jawaban">
+    <input class="form-control mb-2" type="hidden" name="pertanyaan_id" value="{{$pertanyaan[0]->id}}">
+    <textarea class="form-control" style="margin-top: 100px;" id="isi" name="isi" placeholder="Enter your answers"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" style="">Submit</button>
 </form>
 
 </div>

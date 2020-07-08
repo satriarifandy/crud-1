@@ -8,6 +8,7 @@ use App\Models\JawabanModel;
 
 class PertanyaanController extends Controller 
 {
+    
     public function index(){
         $pertanyaans = PertanyaanModel::get_all();
         // var_dump($pertanyaans);

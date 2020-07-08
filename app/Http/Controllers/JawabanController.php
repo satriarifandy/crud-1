@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\JawabanModel;
+use App\Models\PertanyaanModel;
 
 class JawabanController extends Controller
 {
